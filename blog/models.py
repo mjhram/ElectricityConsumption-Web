@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 from django.urls import reverse
 from . import fields
 
@@ -19,7 +19,8 @@ class ElecUnits(models.Model):
     price = models.CharField(max_length=15, blank=True, null=True)
     calcstr = models.CharField(db_column='calcStr', max_length=100, blank=True, null=True)  # Field name made lowercase.
     isitbill = models.IntegerField(default=0, choices=YN, db_column='isItBill', blank=False, null=False)  # Field name made lowercase.
-   
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+
     def __str__(self):
         return self.calcstr
     

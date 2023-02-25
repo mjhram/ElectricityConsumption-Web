@@ -8,27 +8,27 @@
       </div>
 	  
       <div class="article-metadata">
-         <small class="text-muted"><b>Previous Reading Date: </b>{{ object.prevdateinmillisec|int2date  }}</small>
+         <small class="text-muted"><b>تاريخ القراءة السابقة: </b>{{ object.prevdateinmillisec|int2date  }}</small>
       </div>
       <div class="article-metadata">
-         <small class="text-muted"><b>Previous Reading: </b>{{ object.prevreading }}</small>
+         <small class="text-muted"><b>القراءة السابقة: </b>{{ object.prevreading }}</small>
       </div>
       <div class="article-metadata">
-         <small class="text-muted"><b>Next Reading Date: </b>{{ object.nextdateinmillisec|int2date  }}</small>
+         <small class="text-muted"><b>تاريخ القراءة اللاحقة: </b>{{ object.nextdateinmillisec|int2date  }}</small>
       </div>
       <div class="article-metadata">
-         <small class="text-muted"><b>Next Reading: </b>{{ object.nextreading }}</small>
+         <small class="text-muted"><b>القراءة اللاحقة: </b>{{ object.nextreading }}</small>
       </div>
       <div class="article-metadata">
-         <small class="text-muted"><b>Price: </b>{{ object.price }}</small>
+         <small class="text-muted"><b>المبلغ: </b>{{ object.price }}</small>
       </div>
       <div class="article-metadata">
-         <small class="text-muted"><b>Calc: </b>{{ object.calcstr }}</small>
+         <small class="text-muted"><b>طريقة الاحتساب: </b>{{ object.calcstr }}</small>
       </div>
-      <div>
-		  <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.no %}">Update</a>
-		  <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-create' %}">Use</a>
-		  <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.no %}">Delete</a>
+      <div class="btns">
+		  <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.no %}">تعديل</a>
+		  <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-create' %}">استخدم</a>
+		  <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.no %}">مسح</a>
 	    </div>
     </div>
     

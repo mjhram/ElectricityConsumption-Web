@@ -5,6 +5,13 @@ from .models import ElecUnits
 from .forms import FormNew#, NameForm
 from datetime import datetime, timezone
 # from vanilla import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import User
+from guest_user.decorators import allow_guest_user
+from guest_user.mixins import AllowGuestUserMixin
+
 from django.views.generic import (
     ListView,
     DetailView,
@@ -59,14 +66,22 @@ def home(request):
     }
     return render(request, 'blog/home.html', context)
 
-class PostListView(ListView):
+class PostListView(AllowGuestUserMixin, ListView):
     model = ElecUnits
     template_name = 'blog/home.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     ordering = ['-time']
     paginate_by=5
 
-class PostDetailView(DetailView):
+    def get_queryset(self):
+        if self.request.user.is_anonymous:
+            return ElecUnits.objects.none()
+        else:
+            # user = get_object_or_404(User, username=self.request.user)
+            return ElecUnits.objects.filter(author=self.request.user).order_by('-time')
+
+# class PostDetailView(LoginRequiredMixin, DetailView):
+class PostDetailView(AllowGuestUserMixin, DetailView):
     model = ElecUnits
     # def get(self, *args, **kwargs):
     #     response = super(PostDetailView, self).get(*args, **kwargs)
@@ -80,9 +95,15 @@ class PostDetailView(DetailView):
         # print(queryset)
         FormNew.elecUnitObj=obj
         return obj
+    def get_queryset(self):
+        if self.request.user.is_anonymous:
+            return ElecUnits.objects.none()
+        else:
+            # user = get_object_or_404(User, username=self.request.user)
+            return ElecUnits.objects.filter(author=self.request.user).order_by('-time')
 
 
-class PostCreateView(CreateView):
+class PostCreateView(AllowGuestUserMixin, CreateView):
     model = ElecUnits
     #fields = ['prevdateinmillisec', 'prevreading', 'nextdateinmillisec', 'nextreading', 'isitbill']
     form_class = FormNew
@@ -93,15 +114,32 @@ class PostCreateView(CreateView):
     #          'author': self.request.user,
     #          'publish_date': datetime.date.today()
     #     }
-    
-class PostUpdateView(UpdateView):
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+class PostUpdateView(AllowGuestUserMixin, UserPassesTestMixin, UpdateView):
     model = ElecUnits
     form_class = FormNew
     template_name_suffix = '_update_form'
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
  
-class PostDeleteView(DeleteView):
+class PostDeleteView(AllowGuestUserMixin, UserPassesTestMixin, DeleteView):
     model = ElecUnits
     success_url = '/'
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
    
 
 # class PostCreateView(CreateView):
@@ -132,11 +170,13 @@ class PostDeleteView(DeleteView):
 #             return HttpResponseRedirect(reverse_lazy('post-detail', kwargs={'pk': stock.no}))#args='post/<int:pk>/'))
 #         return render(request, '', {'form': form})
 
+# @login_required
+@allow_guest_user
 def chart(request):
     labels = []
     data = []
 
-    queryset = ElecUnits.objects.all().filter(isitbill=1).order_by('-time')[:40]
+    queryset = ElecUnits.objects.all().filter(author=request.user, isitbill=1).order_by('-time')[:40]
     for city in queryset:
         dt_object = datetime.fromtimestamp(city.prevdateinmillisec/1000)
         labels.append(dt_object.strftime('%Y-%b'))

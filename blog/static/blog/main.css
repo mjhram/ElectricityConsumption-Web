@@ -2,7 +2,17 @@ body {
   background: #fafafa;
   color: #333333;
   margin-top: 5rem;
+  text-align: right;
+  direction: rtl;
+  display: flex;
 }
+
+label {
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 
 h1, h2, h3, h4, h5, h6 {
   color: #444444;
@@ -54,11 +64,17 @@ a.article-title:hover {
   width: 65px;
   margin-right: 16px;
 }
-
+.btns {
+  text-align: right;
+  direction: rtl;
+}
 .article-metadata {
-  padding-bottom: 1px;
-  margin-bottom: 4px;
-  border-bottom: 1px solid #e3e3e3
+  /*padding-bottom: 1px;
+  margin-bottom: 4px;*/
+  text-align: right;
+  direction: rtl;
+  border-bottom: 1px solid #e3e3e3;
+
 }
 
 .article-metadata a:hover {

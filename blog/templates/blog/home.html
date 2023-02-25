@@ -8,32 +8,32 @@
               <small class="text-muted"><a class="article-title" href="{% url 'post-detail' post.no %}">{{ post.time|date:"F d, Y" }}</a></small>
             </div>
             <div class="article-metadata">
-               <small class="text-muted"><b>Previous Reading Date: </b>{{ post.prevdateinmillisec|int2date }}</small>
+               <small class="text-muted"><b>تاريخ القراءة السابقة: </b>{{ post.prevdateinmillisec|int2date }}</small>
             </div>
             <div class="article-metadata">
-               <small class="text-muted"><b>Previous Reading: </b>{{ post.prevreading }}</small>
+               <small class="text-muted"><b>القراءة السابقة: </b>{{ post.prevreading }}</small>
             </div>
             <div class="article-metadata">
-               <small class="text-muted"><b>Next Reading Date: </b>{{ post.nextdateinmillisec|int2date }}</small>
+               <small class="text-muted"><b>تاريخ القراءة اللاحقة: </b>{{ post.nextdateinmillisec|int2date }}</small>
             </div>
             <div class="article-metadata">
-               <small class="text-muted"><b>Next Reading: </b>{{ post.nextreading }}</small>
+               <small class="text-muted"><b>القراءة اللاحقة: </b>{{ post.nextreading }}</small>
             </div>
             <div class="article-metadata">
-               <small class="text-muted"><b>Days: </b>{{ post.prevdateinmillisec|getdays:post.nextdateinmillisec }}</small>
+               <small class="text-muted"><b>عدد الايام: </b>{{ post.prevdateinmillisec|getdays:post.nextdateinmillisec }}</small>
             </div>
             <div class="article-metadata">
-               <small class="text-muted"><b>Units: </b>{{ post.nextreading|subtract:post.prevreading}}</small>
+               <small class="text-muted"><b>الوحدات: </b>{{ post.nextreading|subtract:post.prevreading}}</small>
             </div>
             
             <div class="article-metadata">
-               <small class="text-muted"><b>Price: </b>{{ post.price }}</small>
+               <small class="text-muted"><b>المبلغ: </b>{{ post.price }}</small>
             </div>
             <div class="article-metadata">
-               <small class="text-muted"><b>Calc: </b>{{ post.calcstr }}</small>
+               <small class="text-muted"><b>طريقة الاحتساب: </b>{{ post.calcstr }}</small>
             </div>
             <div class="article-metadata">
-               <small class="text-muted"><b>Bill: </b>{{ post.isitbill }}</small>
+               <small class="text-muted"><b>هل هي ورقة كهرباء: </b>{% if post.isitbill == 1 %} Yes {% else %} No {% endif %}</small>
             </div>
           </div>
         </article>

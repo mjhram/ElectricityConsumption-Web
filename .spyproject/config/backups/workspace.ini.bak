@@ -4,7 +4,7 @@ save_data_on_exit = True
 save_history = True
 save_non_project_files = False
 project_type = 'empty-project-type'
-recent_files = ['blog\\views.py', 'blog\\models.py', 'blog\\forms.py', 'blog\\urls.py', 'blog\\fields.py', 'blog\\templates\\blog\\elecunits_form.html']
+recent_files = ['blog\\views.py', 'blog\\models.py', 'blog\\forms.py', 'blog\\urls.py', 'blog\\fields.py', 'blog\\templates\\blog\\base.html', 'blog\\templates\\blog\\about.html', 'blog\\templates\\blog\\elecunits_detail.html', 'blog\\templates\\blog\\elecunits_update_form.html']
 
 [main]
 version = 0.2.0

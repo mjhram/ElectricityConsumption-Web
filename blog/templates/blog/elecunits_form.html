@@ -5,28 +5,28 @@
         <form method="POST" id="my_form">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Blog Post</legend>
+                <legend class="border-bottom mb-4">حساب تكلفة</legend>
                 {{ form|crispy }}
             </fieldset>
             <div class="form-group">
-                <button id="id_btn_calc" class="btn btn-outline-info" type="button">Calculate</button>
+                <button id="id_btn_calc" class="btn btn-outline-info" type="button">احسب</button>
             </div>
         </form>
     </div>
     <div class="d-flex">
-       <div class="d-inline-block"> Units: </div>
+       <div class="d-inline-block"> الوحدات: </div>
        <div class="d-inline-block" id="div_units"> -- </div>
     </div>
     <div class="d-flex">
-       <div class="d-inline-block"> Days: </div>
+       <div class="d-inline-block"> عدد الايام: </div>
        <div class="d-inline-block" id="div_days"> -- </div>
     </div>
     <div class="d-flex">
-       <div class="d-inline-block"> Price: </div>
+       <div class="d-inline-block"> المبلغ: </div>
        <div class="d-inline-block" id="div_price"> -- </div>
     </div>
     <div class="d-flex">
-       <div class="d-inline-block"> Calc String: </div>
+       <div class="d-inline-block"> طريقة الاحتساب: </div>
        <div class="d-inline-block" id="div_calc">--</div>
     </div>
 {% endblock content %}

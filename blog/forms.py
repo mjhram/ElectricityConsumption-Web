@@ -32,7 +32,7 @@ class FormNew(forms.ModelForm):
              (False, 'No')
          ]
     elecUnitObj=None
-    isSave = forms.BooleanField(initial=False, label='Save to DB', required=False)  # This field type is a guess.
+    isSave = forms.BooleanField(initial=False, label='خزن', required=False)  # This field type is a guess.
     # time = forms.DateField(widget=forms.widgets.DateInput(attrs={'type': 'date'}))  # This field type is a guess.
 
 
@@ -47,7 +47,12 @@ class FormNew(forms.ModelForm):
             self.fields['nextreading'].initial = FormNew.elecUnitObj.nextreading
             self.fields['isitbill'].initial = FormNew.elecUnitObj.isitbill
             FormNew.elecUnitObj = None
-    
+        else:
+            self.fields['prevdateinmillisec'].initial = datetime.today()
+            self.fields['nextdateinmillisec'].initial = datetime.today()
+            self.fields['prevreading'].initial = 0
+            self.fields['nextreading'].initial = 1
+            self.fields['isitbill'].initial = 0
         
     class Meta:
         model = ElecUnits
@@ -55,13 +60,13 @@ class FormNew(forms.ModelForm):
                   , 'nextdateinmillisec', 'nextreading', 'isitbill', 
                   'price', 'calcstr']
         labels = {
-            'prevdateinmillisec': 'Prev Date',
-            'prevreading': 'Prev Reading',
-            'nextdateinmillisec': 'Next Date',
-            'nextreading': 'Next Reading',
-            'isitbill': 'Is It Bill',
-            'price': 'Price',
-            'calcstr': 'Calc String',
+            'prevdateinmillisec': 'تاريخ القراءة السابقة',
+            'prevreading': 'القراءة السابقة',
+            'nextdateinmillisec': 'تاريخ القراءة اللاحقة',
+            'nextreading': 'القراءة اللاحقة',
+            'isitbill': 'هل هي ورقة كهرباء',
+            'price': 'السعر',
+            'calcstr': 'طريقة الاحتساب',
             
         }
         
