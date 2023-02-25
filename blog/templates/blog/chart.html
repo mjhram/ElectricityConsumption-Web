@@ -1,6 +1,6 @@
 {% extends "blog/base.html" %}
 {% block content %}
-    <h1>Bill per Month Chart</h1>
+    <h1>المبلغ لكل شهر</h1>
 
         <div>
           <canvas id="myChart"></canvas>
@@ -16,7 +16,7 @@
             data: {
               labels: {{ labels|safe }},
               datasets: [{
-                label: 'Price',
+                label: 'المبلغ بالدينار',
                 backgroundColor: 'blue',
                 data: {{ data|safe }},
               }]          

@@ -4,3 +4,4 @@ django-chartjs
 django-crispy-forms
 django-guest-user
 pillow
+crispy-bootstrap4
