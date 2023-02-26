@@ -20,13 +20,13 @@
          <small class="text-muted"><b>القراءة اللاحقة: </b>{{ object.nextreading }}</small>
       </div>
       <div class="article-metadata">
-         <small class="text-muted"><b>المبلغ: </b>{{ object.price }}</small>
+         <small class="text-muted"><b>المبلغ: </b>{{ object.pricenum }}</small>
       </div>
       <div class="article-metadata">
          <small class="text-muted"><b>طريقة الاحتساب: </b>{{ object.calcstr }}</small>
       </div>
       <div class="btns">
-		  <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.no %}">تعديل</a>
+<!--		  <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.no %}">تعديل</a>-->
 		  <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-create' %}">استخدم</a>
 		  <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.no %}">مسح</a>
 	    </div>

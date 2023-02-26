@@ -73,7 +73,7 @@ void onCalculateClicked()
         //submit
         //console.log("--------------")
         //console.log(calcString)
-        $("#id_price").val(Math.round(price))
+        $("#id_pricenum").val(Math.round(price))
         $("#id_calcstr").val(calcString)
         
         /*$("<input />").attr("type", "hidden")

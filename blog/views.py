@@ -179,8 +179,12 @@ def chart(request):
     queryset = ElecUnits.objects.all().filter(author=request.user, isitbill=1).order_by('-time')[:40]
     for city in queryset:
         dt_object = datetime.fromtimestamp(city.prevdateinmillisec/1000)
+        days = (city.nextdateinmillisec - city.prevdateinmillisec) / (1000 * 60 * 60 * 24);
+        if(days == 0):
+            continue
+        pricenum = city.pricenum * 30.0/days;
         labels.append(dt_object.strftime('%Y-%b'))
-        data.append(city.price)
+        data.append(pricenum)
 
     return render(request, 'blog/chart.html', {
         'title': 'About',

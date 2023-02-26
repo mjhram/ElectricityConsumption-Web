@@ -58,21 +58,21 @@ class FormNew(forms.ModelForm):
         model = ElecUnits
         fields = [ 'prevdateinmillisec', 'prevreading'
                   , 'nextdateinmillisec', 'nextreading', 'isitbill', 
-                  'price', 'calcstr']
+                  'pricenum', 'calcstr']
         labels = {
             'prevdateinmillisec': 'تاريخ القراءة السابقة',
             'prevreading': 'القراءة السابقة',
             'nextdateinmillisec': 'تاريخ القراءة اللاحقة',
             'nextreading': 'القراءة اللاحقة',
             'isitbill': 'هل هي ورقة كهرباء',
-            'price': 'السعر',
+            'pricenum': 'السعر',
             'calcstr': 'طريقة الاحتساب',
             
         }
         
         widgets = {
         #       'nextdateinmillisec': forms.widgets.DateInput(attrs={'type': 'date'})
-            'price': forms.HiddenInput(),
+            'pricenum': forms.HiddenInput(),
             'calcstr': forms.HiddenInput(),
             # 'isitbill': forms.Select(attrs={
             #     'class': 'form-control',

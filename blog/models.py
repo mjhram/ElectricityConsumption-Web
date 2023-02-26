@@ -16,7 +16,7 @@ class ElecUnits(models.Model):
     # nextdateinmillisec = models.BigIntegerField( db_column='nextDateInMilliSec', blank=True, null=True)  # Field name made lowercase.
     prevreading = models.IntegerField(db_column='prevReading', blank=True, null=True)  # Field name made lowercase.
     nextreading = models.IntegerField(db_column='nextReading', blank=True, null=True)  # Field name made lowercase.
-    price = models.CharField(max_length=15, blank=True, null=True)
+    pricenum = models.FloatField(default=0.0, blank=True, null=True)
     calcstr = models.CharField(db_column='calcStr', max_length=100, blank=True, null=True)  # Field name made lowercase.
     isitbill = models.IntegerField(default=0, choices=YN, db_column='isItBill', blank=False, null=False)  # Field name made lowercase.
     author = models.ForeignKey(User, on_delete=models.CASCADE)
