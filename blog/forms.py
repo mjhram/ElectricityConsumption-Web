@@ -32,7 +32,7 @@ class FormNew(forms.ModelForm):
              (False, 'No')
          ]
     elecUnitObj=None
-    isSave = forms.BooleanField(initial=False, label='خزن', required=False)  # This field type is a guess.
+    isSave = forms.BooleanField(initial=True, label='خزن', required=False)  # This field type is a guess.
     # time = forms.DateField(widget=forms.widgets.DateInput(attrs={'type': 'date'}))  # This field type is a guess.
 
 
